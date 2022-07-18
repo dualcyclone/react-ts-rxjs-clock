@@ -1,6 +1,10 @@
-export const MONTH_NUMBER: string = "number";
-export const MONTH_LONG: string = "long";
-export const MONTH_SHORT: string = "short";
+import Preferences from "../models/Preferences";
+
+export enum MONTH_FORMAT {
+  NUMBER = "number",
+  LONG = "long",
+  SHORT = "short"
+}
 
 type MONTH = { short: string; long: string };
 export const MONTHS: MONTH[] = [
@@ -35,10 +39,10 @@ export const ONE_HOUR: number = 3600000;
 export type Preference = {
   use24HourFormat: boolean;
   showSeconds: boolean;
-  monthFormat: typeof MONTH_NUMBER;
+  monthFormat: MONTH_FORMAT;
 };
-export const PREFERENCES_DEFAULT: Preference = {
+export const PREFERENCES_DEFAULT: Preference = new Preferences({
   use24HourFormat: true,
   showSeconds: true,
-  monthFormat: MONTH_NUMBER
-};
+  monthFormat: MONTH_FORMAT.NUMBER
+});

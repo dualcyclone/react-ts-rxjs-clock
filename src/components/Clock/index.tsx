@@ -2,7 +2,7 @@ import React from "react";
 import { Observable } from "rxjs";
 import { useObservable } from "react-use";
 
-import { MONTH_NUMBER, PREFERENCES_DEFAULT } from "../../lib/constants";
+import { MONTH_FORMAT, PREFERENCES_DEFAULT } from "../../lib/constants";
 
 import preferences$ from "../../streams/preferences";
 import userTime$ from "../../streams/userTime";
@@ -38,7 +38,7 @@ const Clock = ({ userTimeStream$ = userTime$ }: ClockProps) => {
   const displaySeconds = () => (preferences.showSeconds ? `:${second}` : "");
   const displayMeridian = () => (meridian ? ` ${meridian}` : "");
   const displayMonth = () =>
-    preferences.monthFormat === MONTH_NUMBER
+    preferences.monthFormat === MONTH_FORMAT.NUMBER
       ? `/${month}/`
       : `${ordinal} ${monthName[preferences.monthFormat]} `;
 

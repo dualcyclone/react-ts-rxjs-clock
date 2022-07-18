@@ -2,17 +2,13 @@ import React from "react";
 import { useObservable } from "react-use";
 
 import CheckIcon from "@mui/icons-material/Check";
-import { ToggleButtonGroup, ToggleButton } from "@mui/material";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 
-import { MONTH_NUMBER, MONTH_SHORT, MONTH_LONG, Preference } from "../../lib/constants";
+import { MONTH_FORMAT, Preference } from "../../lib/constants";
 
 import preferences$ from "../../streams/preferences";
 
-import {
-  PreferencePanelCard,
-  PreferenceButtonGroup,
-  PreferenceBoxTitle
-} from "./PreferencesPanel.styles";
+import { PreferenceBoxTitle, PreferenceButtonGroup, PreferencePanelCard } from "./PreferencesPanel.styles";
 
 export const PreferencesPanel = () => {
   const preferences = useObservable(preferences$);
@@ -61,12 +57,12 @@ export const PreferencesPanel = () => {
           value={preferences.monthFormat}
           exclusive
           onChange={(_, value) =>
-            handlePreferenceChange({ monthFormat: value || MONTH_NUMBER })
+            handlePreferenceChange({ monthFormat: value || MONTH_FORMAT.NUMBER })
           }
         >
-          <ToggleButton value={MONTH_NUMBER}>Number</ToggleButton>
-          <ToggleButton value={MONTH_SHORT}>Short</ToggleButton>
-          <ToggleButton value={MONTH_LONG}>Long</ToggleButton>
+          <ToggleButton value={MONTH_FORMAT.NUMBER}>Number</ToggleButton>
+          <ToggleButton value={MONTH_FORMAT.SHORT}>Short</ToggleButton>
+          <ToggleButton value={MONTH_FORMAT.LONG}>Long</ToggleButton>
         </ToggleButtonGroup>
       </PreferenceButtonGroup>
     </PreferencePanelCard>

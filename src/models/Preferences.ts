@@ -1,14 +1,17 @@
-import { Preference, PREFERENCES_DEFAULT } from "../lib/constants";
+import { MONTH_FORMAT, Preference, PREFERENCES_DEFAULT } from "../lib/constants";
 
-interface PreferencesConstructor extends Preference {
+export interface PreferencesConstructor extends Preference {
   update(preferences: Preference): Preference;
   getPrimitivePreferences(): Preference;
+  use24HourFormat: boolean;
+  showSeconds: boolean;
+  monthFormat: MONTH_FORMAT;
 }
 
 class Preferences implements PreferencesConstructor {
-  public use24HourFormat = false;
-  public showSeconds = false;
-  public monthFormat = "number";
+  public use24HourFormat: boolean = true;
+  public showSeconds: boolean = true;
+  public monthFormat: MONTH_FORMAT = MONTH_FORMAT.NUMBER;
 
   constructor(preferences = PREFERENCES_DEFAULT) {
     this.update(preferences);

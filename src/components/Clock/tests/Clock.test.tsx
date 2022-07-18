@@ -9,7 +9,7 @@ import Time from "../../../models/Time";
 import Preferences from "../../../models/Preferences";
 import preferences$ from "../../../streams/preferences";
 import Clock from "../index";
-import { MONTH_LONG, MONTH_SHORT } from "../../../lib/constants";
+import { MONTH_FORMAT } from "../../../lib/constants";
 
 describe("Clock component tests", () => {
   afterEach(() => act(() => preferences$.next(new Preferences())));
@@ -47,7 +47,7 @@ describe("Clock component tests", () => {
 
   it("Will render the clock with short month format when preferences are set to display short month names", async () => {
     const mockTimeObj = new Time({ date: new Date("21 Jul 2022 23:24:25") });
-    preferences$.next(preferences$.value.update({ monthFormat: MONTH_SHORT }));
+    preferences$.next(preferences$.value.update({ monthFormat: MONTH_FORMAT.SHORT }));
 
     const { getByText } = render(<Clock userTimeStream$={of(mockTimeObj)} />);
 
@@ -56,7 +56,7 @@ describe("Clock component tests", () => {
 
   it("Will render the clock with long month format when preferences are set to display short month names", async () => {
     const mockTimeObj = new Time({ date: new Date("21 Jul 2022 23:24:25") });
-    preferences$.next(preferences$.value.update({ monthFormat: MONTH_LONG }));
+    preferences$.next(preferences$.value.update({ monthFormat: MONTH_FORMAT.LONG }));
 
     const { getByText } = render(<Clock userTimeStream$={of(mockTimeObj)} />);
 
